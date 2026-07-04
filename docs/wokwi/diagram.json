@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "author": "Team Delta V — Techathon Nationals 2026",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 140, "left": 240, "attrs": {} },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -5.6,
+      "left": 2.22,
+      "attrs": { "label": "PIR-DrawingRoom" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir2",
+      "top": 109.6,
+      "left": 2.22,
+      "attrs": { "label": "PIR-WorkRoom1" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir3",
+      "top": 210,
+      "left": 0,
+      "attrs": { "label": "PIR-WorkRoom2" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay1",
+      "top": -86.2,
+      "left": 508.8,
+      "attrs": { "label": "Relay-DrawingRoom" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay2",
+      "top": 120,
+      "left": 540,
+      "attrs": { "label": "Relay-WorkRoom1" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay3",
+      "top": 240,
+      "left": 540,
+      "attrs": { "label": "Relay-WorkRoom2" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 340,
+      "left": 0,
+      "attrs": { "label": "DHT22-TempHumidity" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 360,
+      "left": 540,
+      "attrs": { "color": "green", "label": "LED-Status-DrawingRoom" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 420,
+      "left": 540,
+      "attrs": { "color": "green", "label": "LED-Status-WorkRoom1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 480,
+      "left": 540,
+      "attrs": { "color": "green", "label": "LED-Status-WorkRoom2" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledAlarm",
+      "top": 514.8,
+      "left": 618.2,
+      "attrs": { "color": "red", "label": "LED-Alarm" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer1",
+      "top": 463.2,
+      "left": 241.8,
+      "attrs": { "volume": "0.5" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 419,
+      "left": 134.4,
+      "attrs": { "label": "Manual-Override-Btn" }
+    },
+    { "type": "wokwi-resistor", "id": "r1", "top": 370, "left": 510, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 430, "left": 510, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 490, "left": 510, "attrs": { "value": "220" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 599.15,
+      "left": 432,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r5",
+      "top": 430,
+      "left": 100,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled2",
+      "top": 12.74,
+      "left": 355.43,
+      "attrs": { "i2cAddress": "0x3c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "pir1:VCC", "red", [] ],
+    [ "esp:GND.1", "pir1:GND", "black", [] ],
+    [ "esp:4", "pir1:OUT", "green", [] ],
+    [ "esp:3V3", "pir2:VCC", "red", [] ],
+    [ "esp:GND.1", "pir2:GND", "black", [] ],
+    [ "esp:5", "pir2:OUT", "green", [] ],
+    [ "esp:3V3", "pir3:VCC", "red", [] ],
+    [ "esp:GND.1", "pir3:GND", "black", [] ],
+    [ "esp:15", "pir3:OUT", "green", [] ],
+    [ "esp:5V", "relay1:VCC", "red", [] ],
+    [ "esp:GND.2", "relay1:GND", "black", [] ],
+    [ "esp:16", "relay1:IN", "yellow", [] ],
+    [ "esp:5V", "relay2:VCC", "red", [] ],
+    [ "esp:GND.2", "relay2:GND", "black", [] ],
+    [ "esp:17", "relay2:IN", "yellow", [] ],
+    [ "esp:5V", "relay3:VCC", "red", [] ],
+    [ "esp:GND.2", "relay3:GND", "black", [] ],
+    [ "esp:18", "relay3:IN", "yellow", [] ],
+    [ "esp:3V3", "dht1:VCC", "red", [] ],
+    [ "esp:GND.1", "dht1:GND", "black", [] ],
+    [ "esp:19", "dht1:SDA", "orange", [] ],
+    [ "esp:3V3", "oled2:VCC", "red", [] ],
+    [ "esp:GND.1", "oled2:GND", "black", [] ],
+    [ "esp:21", "oled2:SDA", "purple", [] ],
+    [ "esp:22", "oled2:SCL", "purple", [] ],
+    [ "esp:13", "r1:1", "blue", [] ],
+    [ "r1:2", "led1:A", "blue", [] ],
+    [ "esp:GND.2", "led1:C", "black", [] ],
+    [ "esp:14", "r2:1", "blue", [] ],
+    [ "r2:2", "led2:A", "blue", [] ],
+    [ "esp:GND.2", "led2:C", "black", [] ],
+    [ "esp:27", "r3:1", "blue", [] ],
+    [ "r3:2", "led3:A", "blue", [] ],
+    [ "esp:GND.2", "led3:C", "black", [] ],
+    [ "esp:26", "r4:1", "red", [] ],
+    [ "r4:2", "ledAlarm:A", "red", [] ],
+    [ "esp:GND.2", "ledAlarm:C", "black", [] ],
+    [ "esp:23", "buzzer1:1", "orange", [] ],
+    [ "esp:GND.2", "buzzer1:2", "black", [] ],
+    [ "esp:3V3", "r5:1", "red", [] ],
+    [ "r5:2", "btn1:1.l", "gray", [] ],
+    [ "esp:25", "btn1:1.l", "white", [] ],
+    [ "esp:GND.2", "btn1:2.l", "black", [] ]
+  ],
+  "dependencies": {}
+}
