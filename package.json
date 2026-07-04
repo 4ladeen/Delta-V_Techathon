@@ -1,0 +1,21 @@
+{
+  "name": "drishti",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["shared", "backend", "bot", "frontend"],
+  "scripts": {
+    "build:shared": "npm run build -w shared",
+    "postinstall": "npm run build:shared",
+    "dev": "concurrently -n backend,bot,frontend -c blue,magenta,green \"npm run dev -w backend\" \"npm run dev -w bot\" \"npm run dev -w frontend\"",
+    "dev:no-bot": "concurrently -n backend,frontend -c blue,green \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "dev:backend": "npm run dev -w backend",
+    "dev:bot": "npm run dev -w bot",
+    "dev:frontend": "npm run dev -w frontend",
+    "build": "npm run build -w shared && npm run build -w frontend && npm run build -w backend && npm run build -w bot",
+    "start": "npm run build && node backend/dist/server.js",
+    "test": "npm run test -w backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
